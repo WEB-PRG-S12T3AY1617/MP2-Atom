@@ -4,3 +4,11 @@
     <a href="#">Sign-up</a>
 </nav>
 <a href="/users/">User Profiles</a>
+</br>
+{% if all_p %}
+    {% for post in all_p %}
+        <p>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br>User: <a href ="/users/{{post.op.id}}/">{{post.op.name}}</a></br></p>
+    {% endfor %}
+{% else %}
+    <p>No recent Posts</p>
+{% endif %}

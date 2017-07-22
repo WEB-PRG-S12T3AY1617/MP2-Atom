@@ -1,0 +1,9 @@
+{% if all_u %}
+    <h1>This is the Users page</h1>
+    {% for user in all_u %}
+<a href ="{{user.id}}/">{{user.name}}</a></br>
+    {% endfor %}
+{% else %}
+    <h2>No users </h2>
+{% endif %}
+<a href="/">Back To Home Page</a>

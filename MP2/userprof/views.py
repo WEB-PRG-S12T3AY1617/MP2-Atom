@@ -1,22 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render, get_object_or_404
 from .models import User
 from .models import Post
 
+app_name = 'userprof'
+
 def index(request):
     all_users = User.objects.all()
-    context = {
-        'all_u' : all_users,
-        '/' : '/',
-    }
-    return render(request, 'homepage/userhpage.html', context)
+    return render(request, 'homepage/userhpage.html', {'all_u' : all_users,
+        '/' : '/',})
 
 def user(request, user_num):
-    sUser = User.objects.get(id=user_num)
-    context = {
-        #'user_id' : user_num,
-        'user' : sUser,
-        'post' : Post.objects.get(id=sUser.id),
-    }
-    return render(request, 'usertemp/user.html', context)
+    sUser = get_object_or_404(User,id=user_num)
+    return render(request, 'usertemp/user.html', {'user' : sUser,
+        'all_upost' : sUser.post_set.all()})

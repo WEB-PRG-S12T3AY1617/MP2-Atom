@@ -1,13 +1,13 @@
 
 <h1>This is user # {{user.id}} </h1>
 
-<section id="userinf">
-    <p>Name: {{user.name}} </br> Degree: {{user.degree}}</br></p>
-</section>
-
-<section class="userpost">
-    <p>Posts:</br>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br></p>
-</section>
-
+    <section id="userinf">
+        <p>Name: {{user.name}} </br> Degree: {{user.degree}}</br></br>Posts:</br></p>
+    </section>
+{% for post in all_upost %}
+    <section class="userpost">
+        <p>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br></p>
+    </section>
+{% endfor %}
 
 <a href="/users/" class="retAnchor">Back To User Profiles</a>

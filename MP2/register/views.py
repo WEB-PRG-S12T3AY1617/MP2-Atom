@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.template import loader
 
+app_name = 'register'
+
 def index(request):
-    context = {
-        
-    }
-    return render(request, 'homepage/reghpage.html', context)
+    return render(request, 'homepage/reghpage.html', {})

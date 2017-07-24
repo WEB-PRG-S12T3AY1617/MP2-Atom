@@ -2,8 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from .models import User
 from .models import Post
 
-app_name = 'userprof'
-
 def index(request):
     all_users = User.objects.all()
     return render(request, 'homepage/userhpage.html', {'all_u' : all_users,

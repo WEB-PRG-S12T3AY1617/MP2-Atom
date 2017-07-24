@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from . import views
 
+app_name = 'user_prof'
+
 urlpatterns = [
     #/users/
     url(r'^$', views.index, name='index'),

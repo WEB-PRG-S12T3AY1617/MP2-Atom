@@ -1,12 +1,12 @@
 <h1>This is the Home page</h1>
 <nav>
-    <a href="/login/">Login</a>
-    <a href="/register/">Sign-up</a>
+    <a href="{% url 'login:index' %}">Login</a>
+    <a href="{% url 'register:index' %}">Sign-up</a>
 </nav>
-<a href="/users/">User Profiles</a>
+<a href="{% url 'user_prof:index' %}">User Profiles</a>
 </br>
     <section class="userpost">
     {% for post in all_p %}
-        <p>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br>User: <a href ="/users/{{post.op.id}}/">{{post.op.name}}</a></br></p>
+        <p>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br>User: <a href ="{% url 'user_prof:user' post.op.id %}">{{post.op.name}}</a></br></p>
     {% endfor %}
     </section>

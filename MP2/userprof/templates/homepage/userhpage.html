@@ -1,4 +1,17 @@
 <h1>This is the Users page</h1>
+<section class="nav_section">
+    <nav>
+        <a href="{% url 'login:index' %}">Login</a>
+        <a href="{% url 'register:index' %}">Sign-up</a>
+    </nav>
+</section>
+
+<section class="path_section">
+    <span>
+        <a href="{% url 'user_prof:index' %}" value="{{currdirect}}">User Profiles</a>
+    </span>
+</section>
+</br>
     {% for user in all_u %}
         <a href ="{% url 'user_prof:user' user.id %}">{{user.name}}</a></br>
     {% endfor %}

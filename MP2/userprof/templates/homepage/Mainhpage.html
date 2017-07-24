@@ -1,12 +1,21 @@
 <h1>This is the Home page</h1>
-<nav>
-    <a href="{% url 'login:index' %}">Login</a>
-    <a href="{% url 'register:index' %}">Sign-up</a>
-</nav>
-<a href="{% url 'user_prof:index' %}">User Profiles</a>
+<section class="nav_section">
+    <nav>
+        <a href="{% url 'login:index' %}">Login</a>
+        <a href="{% url 'register:index' %}">Sign-up</a>
+    </nav>
+</section>
+
+<section class="path_section">
+    <span>
+        <a href="{% url 'user_prof:index' %}" value="1">User Profiles</a>
+    </span>
+</section>
 </br>
-    <section class="userpost">
+<section class="post_section">
     {% for post in all_p %}
-        <p>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br>User: <a href ="{% url 'user_prof:user' post.op.id %}">{{post.op.name}}</a></br></p>
+        <div class="user_post">
+            <p>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br>User: <a href ="{% url 'user_prof:user' post.op.id %}">{{post.op.name}}</a></br></p>
+        </div>
     {% endfor %}
-    </section>
+</section>

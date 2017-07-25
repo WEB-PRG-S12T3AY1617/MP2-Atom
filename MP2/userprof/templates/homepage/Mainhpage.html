@@ -1,24 +1,9 @@
 <h1>This is the Home page</h1>
-<<<<<<< HEAD
 <nav>
     <a href="{% url 'login:index' %}">Login</a>
     <!-- <a href="{% url 'register:index' %}">Sign-up</a> -->
 </nav>
 <a href="{% url 'user_prof:index' %}">User Profiles</a>
-=======
-<section class="nav_section">
-    <nav>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Sign-up</a>
-    </nav>
-</section>
-
-<section class="path_section">
-    <span>
-        <a href="{% url 'all_user' %}" value="1">User Profiles</a>
-    </span>
-</section>
->>>>>>> 21bc0953cbfee99aaee12e47af225949f342d055
 </br>
 <section class="post_section">
     {% for post in all_p %}
@@ -26,8 +11,4 @@
             <p>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br>User: <a href ="{% url 'user' post.op.id %}">{{post.op.name}}</a></br></p>
         </div>
     {% endfor %}
-<<<<<<< HEAD
     </section>
-=======
-</section>
->>>>>>> 21bc0953cbfee99aaee12e47af225949f342d055

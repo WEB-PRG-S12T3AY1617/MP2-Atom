@@ -21,9 +21,4 @@ urlpatterns = [
     url(r'^', include('userprof.urls'), name='index'),
     #/admin/
     url(r'^admin/', admin.site.urls),
-<<<<<<< HEAD
-    #/users/
-    url(r'^users/', include('userprof.urls')),
-=======
->>>>>>> 21bc0953cbfee99aaee12e47af225949f342d055
 ]

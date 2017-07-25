@@ -2,12 +2,11 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!--<link rel="stylesheet" type="text/css" href="{% static 'userprof/style.css' %}"/>-->
+<link rel="stylesheet" type="text/css" href="{% static 'userprof/style.css' %}"/>
 
 <title>New Beginings Marketplace</title>
-<h1>This is the Home page</h1>
 <section class="nav_section">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             
             <div class="navbar-header">
@@ -16,9 +15,20 @@
             
             <div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
                     <li><a href="{% url 'register' %}">Sign-up</a></li>
                 </ul>
+            
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">My posts</a></li>
+                            <li><a href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            
             </div>
         </div>
         

@@ -24,8 +24,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     #/users/
     url(r'^users/', include('userprof.urls')),
-    #/register/
-    url(r'^register/', include('register.urls')),
-    #/login/
-    url(r'^login/', include('login.urls')),
 ]

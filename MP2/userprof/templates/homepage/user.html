@@ -3,14 +3,14 @@
 
 <section class="nav_section">
     <nav>
-        <a href="{% url 'login:index' %}">Login</a>
-        <a href="{% url 'register:index' %}">Sign-up</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Sign-up</a>
     </nav>
 </section>
 
 <section class="path_section">
     <span>
-        <a href="{% url 'user_prof:index' %}" value="1">User Profiles</a>
+        <a href="{% url 'all_user' %}" value="1">User Profiles</a>
     </span>
 </section>
 </br>
@@ -26,5 +26,5 @@
         </div>
     {% endfor %}
 </section>
-<a href="{% url 'user_prof:index' %}" class="retAnchor">Back To User Profiles</a> <br>
+<a href="{% url 'all_user' %}" class="retAnchor">Back To User Profiles</a> <br>
 <a href = "/" class = "retAnchor"> Back to Home </a>

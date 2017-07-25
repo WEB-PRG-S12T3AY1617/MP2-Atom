@@ -39,3 +39,9 @@ class UserFormView(View):
             user.save()
 
             user = authenticate(username = username, password = password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('userprof:index')
+                    
+        return render(request, self.template_name, {'form': form})

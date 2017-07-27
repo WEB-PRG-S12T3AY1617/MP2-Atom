@@ -68,3 +68,7 @@ img {
 #userlog .form-group {
     margin: 5px;
 }
+.breadcrumb {
+    background-color: black;
+    opacity: 0.8;
+}

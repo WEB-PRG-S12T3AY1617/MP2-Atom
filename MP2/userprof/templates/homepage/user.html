@@ -2,17 +2,14 @@
 {% block title %} User# {{user.id}} {% endblock %}
 {% block pageno %} hidden {% endblock %}
 {% block loggdin %} visible {% endblock %}
+
+{% block path %}
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'all_user' %}">Users</a></li>
+    <li class="active"> {{user.id}} </li>
+{% endblock %}
+
 {% block body %}
-
-    <h1>This is user # {{user.id}} </h1>
-
-    <section class="path_section">
-        <span>
-            <a href="{% url 'all_user' %}" value="1">User Profiles</a>
-        </span>
-    </section>
-    <br>
-
     <section id="userinf">
         <p>Name: {{user.name}} <br> Degree: {{user.degree}}<br>Posts:<br></p>
      </section>

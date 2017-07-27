@@ -91,6 +91,16 @@
             </div>
         </nav>
     </section>
+    
+    <section class="path_section">
+        <ul class="breadcrumb breadcrumb-arrow">
+            {% block path%}<li class="active">Home</li>{% endblock %}
+        
+        </ul>
+        <span>
+            
+        </span>
+    </section>
 
     {% block body %}
     {% endblock %}

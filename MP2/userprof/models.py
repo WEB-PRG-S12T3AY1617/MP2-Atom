@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from taggit.managers import TaggableManager
+
 class profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     degree = models.CharField(max_length=50, blank = True)
@@ -21,6 +23,7 @@ class Post(models.Model):
     item_name = models.CharField(max_length=50)
     quantity = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     thumbnail = models.CharField(max_length=200)
+    tags = TaggableManager()
 
     def __str__(self):
         return self.item_name

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'taggit',
     'userprof.apps.UserprofConfig',
     'django.contrib.admin',
     'django.contrib.auth',

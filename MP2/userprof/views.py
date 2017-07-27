@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import User
 from .models import Post
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.views.generic import View
-from .forms import UserForm
+from .forms import RegisterForm
 
 def index(request):
 
@@ -29,29 +29,47 @@ def register(request):
 def login(request):
     return render(request, 'homepage/loghpage.html', {})
 
-class UserFormView(Viuew):
-    form_class = UserForm
-    template_name = 'userprof/registration_form.html'
-
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-
-    def post(self,request):
-        form = self.form_class(request.POST)
-
+def Register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit = False)
-
-            username = form.cleaned_date['username']
-            password = form.cleaned_date['password']
-            user.set_password(password)
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.degree = form.cleaned_data.get('degree')
             user.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username = username, password = raw_password)
+            login(request,user)
+            return redirect('home')
+    else:
+        form = RegisterForm()
+    return render(request, 'register.html', {'form': form})
 
-            user = authenticate(username = username, password = password)
-            if user is not None:
-                if user.is_active:
-                    login(request,user)
-                    return redirect('userprof/index')
-                    
-        return render(request, self.template_name, {'form': form})
+# class Register(generic.CreateView):
+#     form_class = UserForm
+#     model = User
+#     template_name = 'userprof/registration_form.html'
+#
+#     def get(self, request):
+#         form = self.form_class(None)
+#         return render(request, self.template_name, {'form': form})
+
+    # def post(self,request):
+    #     form = self.form_class(request.POST)
+    #
+    #     if form.is_valid():
+    #         user = form.save(commit = False)
+    #
+    #         username = form.cleaned_date['username']
+    #         password = form.cleaned_date['password']
+    #         user.set_password(password)
+    #         user.save()
+    #
+    #         user = authenticate(username = username, password = password)
+    #         if user is not None:
+    #             if user.is_active:
+    #                 login(request,user)
+    #                 return redirect('userprof/index')
+    #
+    #     return render(request, self.template_name, {'form': form})

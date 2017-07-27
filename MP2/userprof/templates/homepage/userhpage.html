@@ -10,7 +10,7 @@
     </section>
     </br>
         {% for user in all_u %}
-            <a href ="{% url 'user' user.id %}">{{user.name}}</a></br>
+            <a href ="{% url 'user' user.id %}">{{user.username}}</a></br>
         {% endfor %}
     <a href="/" class="retAnchor">Back To Home Page</a>
 {% endblock %}

@@ -12,17 +12,17 @@
         <div class="user_post">
             <div class="item_name">
                 <p>{{post.item_name}}</p>
-                
+
             </div>
-            
+
             <div class="item">
                 <div class="thumbnail">
                     <img src="{{post.thumbnail}}">
                 </div>
                 <div class="item_info">
-                    <p><br>Vendor: <a href ="{% url 'user' post.op.id %}">{{post.op.name}}</a> <br>Quantity: {{post.quantity}}</p>
+                    <p><br>Vendor: <a href ="{% url 'user' post.op.id %}">{{post.op.username}}</a> <br>Quantity: {{post.quantity}}</p>
                 </div>
-                
+
             </div>
         </div>
     {% endfor %}

@@ -11,7 +11,6 @@ urlpatterns = [
     #/users/[userid]/
     url(r'^users/(?P<user_num>[0-9]+)/$', views.user, name='user'),
     #/register/
-    url(r'^register/$', views.register, name='register'),
     url(r'^register/$', views.Register, name='register'),
     #/login/
     url(r'^login/$', views.login, name='login'),

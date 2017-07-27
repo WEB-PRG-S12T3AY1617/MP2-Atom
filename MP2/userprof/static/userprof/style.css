@@ -25,7 +25,7 @@ a, p {
 }
 
 .item_name {
-    background-color: aquamarine;
+    background-color: #162070;
 }
 .item_name p {
     display: block;
@@ -37,7 +37,7 @@ a, p {
 }
 
 .item {
-    background-color:cadetblue;
+    background-color:#162070;
     height: inherit;
 }
 

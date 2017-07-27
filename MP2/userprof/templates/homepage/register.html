@@ -7,22 +7,24 @@
     <form method="post" role="form">
         {% csrf_token %}
         {% for field in form %}
-        {{ field.label_tag }}<br>
-        <div class="form-group">
-            {{ field }}
+            {{ field.label_tag }}<br>
+            <div class="form-group">
+                {{ field }}
+            </div>
+            {% if field.help_text %}
+              <small style="color: grey">{{ field.help_text }}<br></small>
+            {% endif %}
+            {% for error in field.errors %}
+              <p style="color: red">{{ error }}<br></p>
+            {% endfor %}
+        {% endfor %}
+        <br>
+        <div class="modal-footer">
+            <button class="btn btn-primary btn-block" type="submit">Sign up</button>
         </div>
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}<br></small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}<br></p>
-        {% endfor %}
-        {% endfor %}
     </form>
 </div>
   
   
-<div class="modal-footer">
-    <button class="btn btn-primary btn-block" type="submit">Sign up</button>
-</div>
+
 

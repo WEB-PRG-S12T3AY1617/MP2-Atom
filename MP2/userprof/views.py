@@ -1,6 +1,8 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import User
 from .models import Post
+from .models import profile
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
@@ -10,6 +12,14 @@ from .forms import RegisterForm
 def index(request):
 
     all_post = Post.objects.all()
+    filterLimit = Q()
+
+    if 'q' in request.GET:
+        tags = request.GET['q'].split()
+        for tag in tags:
+            filterLimit = filterLimit | Q(tags__contains=tag)
+
+    all_post = all_post.filter(filterLimit)
 
     return render(request, 'homepage/Mainhpage.html', {'all_p' : all_post})
 
@@ -20,8 +30,17 @@ def all_user(request):
 
 def user(request, user_num):
     sUser = get_object_or_404(User,id=user_num)
+    posts = sUser.post_set.all()
+
+    filterLimit = Q()
+    if 'q' in request.GET:
+        tags = request.GET['q'].split()
+        for tag in tags:
+            filterLimit = filterLimit | Q(tags__contains=tag)
+
+    posts = posts.filter(filterLimit)
     return render(request, 'homepage/user.html', {'user' : sUser,
-        'all_upost' : sUser.post_set.all(), 'currdirect' : 3})
+        'all_upost' : posts, 'currdirect' : 3})
 
 def register(request):
     return render(request, 'homepage/reghpage.html', {})

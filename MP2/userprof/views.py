@@ -48,4 +48,4 @@ def Register(request):
             return redirect('home')
     else:
         form = RegisterForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'homepage/register.html', {'form': form})

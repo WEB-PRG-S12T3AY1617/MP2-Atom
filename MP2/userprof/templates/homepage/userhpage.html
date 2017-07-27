@@ -1,18 +1,16 @@
-<h1>This is the Users page</h1>
-<section class="nav_section">
-    <nav>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'register' %}">Sign-up</a>
-    </nav>
-</section>
+{% extends 'homepage/skeleton.html' %}
+{% block title %} Users {% endblock %}
+{% block body %}
+    <h1>This is the Users page</h1>
 
-<section class="path_section">
-    <span>
-        <a href="{% url 'all_user' %}" value="{{currdirect}}">User Profiles</a>
-    </span>
-</section>
-</br>
-    {% for user in all_u %}
-        <a href ="{% url 'user' user.id %}">{{user.name}}</a></br>
-    {% endfor %}
-<a href="/" class="retAnchor">Back To Home Page</a>
+    <section class="path_section">
+        <span>
+            <a href="{% url 'all_user' %}" value="{{currdirect}}">User Profiles</a>
+        </span>
+    </section>
+    </br>
+        {% for user in all_u %}
+            <a href ="{% url 'user' user.id %}">{{user.name}}</a></br>
+        {% endfor %}
+    <a href="/" class="retAnchor">Back To Home Page</a>
+{% endblock %}

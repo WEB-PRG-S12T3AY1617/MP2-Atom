@@ -29,6 +29,10 @@ def register(request):
 def login(request):
     return render(request, 'homepage/loghpage.html', {})
 
+def logout(request):
+    return render(request, 'homepage/logoutpage.html', {})
+
+
 def Register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -45,31 +49,3 @@ def Register(request):
     else:
         form = RegisterForm()
     return render(request, 'register.html', {'form': form})
-
-# class Register(generic.CreateView):
-#     form_class = UserForm
-#     model = User
-#     template_name = 'userprof/registration_form.html'
-#
-#     def get(self, request):
-#         form = self.form_class(None)
-#         return render(request, self.template_name, {'form': form})
-
-    # def post(self,request):
-    #     form = self.form_class(request.POST)
-    #
-    #     if form.is_valid():
-    #         user = form.save(commit = False)
-    #
-    #         username = form.cleaned_date['username']
-    #         password = form.cleaned_date['password']
-    #         user.set_password(password)
-    #         user.save()
-    #
-    #         user = authenticate(username = username, password = password)
-    #         if user is not None:
-    #             if user.is_active:
-    #                 login(request,user)
-    #                 return redirect('userprof/index')
-    #
-    #     return render(request, self.template_name, {'form': form})

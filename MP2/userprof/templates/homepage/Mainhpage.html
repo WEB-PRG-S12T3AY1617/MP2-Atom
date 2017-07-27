@@ -1,51 +1,30 @@
-{% load staticfiles %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<link rel="stylesheet" type="text/css" href="{% static 'userprof/style.css' %}"/>
-
-<title>New Beginings Marketplace</title>
-<section class="nav_section">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            
-            <div class="navbar-header">
-                <a href="/" class="navbar-brand">NBM</a>
-            </div>
-            
-            <div>
-                <ul class="nav navbar-nav">
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a href="{% url 'register' %}">Sign-up</a></li>
-                </ul>
-            
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">My posts</a></li>
-                            <li><a href="#">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            
-            </div>
-        </div>
-        
-        
-    </nav>
-</section>
-
+{% extends 'homepage/skeleton.html' %}
+{% block body %}
 <section class="path_section">
     <span>
         <a href="{% url 'all_user' %}" value="1">User Profiles</a>
     </span>
 </section>
-</br>
+<br>
 <section class="post_section">
     {% for post in all_p %}
         <div class="user_post">
-            <p>Item name: {{post.item_name}}</br>Quantity: {{post.quantity}}</br>User: <a href ="{% url 'user' post.op.id %}">{{post.op.name}}</a></br></p>
+            <div class="item_name">
+                <p>{{post.item_name}}</p>
+                
+            </div>
+            
+            <div class="item">
+                <div class="thumbnail">
+                    <img src="{{post.thumbnail}}">
+                </div>
+                <div class="item_info">
+                    <p><br>Vendor: <a href ="{% url 'user' post.op.id %}">{{post.op.name}}</a> <br>Quantity: {{post.quantity}}</p>
+                </div>
+                
+            </div>
         </div>
     {% endfor %}
 </section>
+{% endblock %}

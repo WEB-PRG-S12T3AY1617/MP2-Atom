@@ -1,3 +1,67 @@
 body {
     background: white url("images/techkonceptbackground1-1.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+a, p {
+    letter-spacing: 2px;
+}
+
+.post_section {
+    display: flex;
+/*    flex-direction: row;*/
+    align-items: center;
+    padding: 5px;
+    height: 90%;
+}
+
+.user_post {
+    width: 50%;
+    flex-direction: row;
+    margin: 4%;
+    height: inherit
+}
+
+.item_name {
+    background-color: aquamarine;
+}
+.item_name p {
+    display: block;
+    color: snow;
+    
+    
+    padding: 5px;
+    text-align: center;
+}
+
+.item {
+    background-color:cadetblue;
+    height: inherit;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 70%;
+}
+
+.item_info {
+    color: snow;
+    padding: 5px;
+}
+
+.item_info a {
+    color: snow;
+}
+
+/*
+a {
+    text-decoration: none;
+    color: black;
+*/
+}
+img {
+    max-height: 100%;
+    max-width: 100%;
 }

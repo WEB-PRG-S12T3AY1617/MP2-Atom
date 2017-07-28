@@ -10,6 +10,7 @@ from django.views.generic import View
 from django.contrib.auth import views as auth_views
 from .forms import RegisterForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 
 def index(request):
 
@@ -80,6 +81,7 @@ def Register(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username = username, password = raw_password)
             login(request,user)
+            # messages.add_message(request, messages.SUCCESS, 'Profile created successfully.')
             return redirect('home')
     else:
         form = RegisterForm()

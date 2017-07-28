@@ -3,7 +3,7 @@
 {% block body %}
 
 <section class="post_section">
-    {% for post in all_p %}
+    {% for post in posts %}
         <div class="user_post">
             <div class="item_name">
                 <p>{{post.item_name}}</p>
@@ -22,4 +22,8 @@
         </div>
     {% endfor %}
 </section>
+
+{% include 'homepage/pagination.html' with page=posts %}
+
+
 {% endblock %}

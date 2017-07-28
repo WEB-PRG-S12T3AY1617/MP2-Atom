@@ -9,7 +9,7 @@
 {% endblock %}
 {% block body %}
 
-<section class="post_section">
+<section class="post_section" style="flex-direction: column">
     {% for post in posts %}
         {% if forloop.counter|divisibleby:"4" %}
             <br><br><br><br><br>

@@ -1,7 +1,7 @@
 {% extends 'homepage/skeleton.html' %}
 {% block title %} User# {{user.id}} {% endblock %}
 {% block pageno %} hidden {% endblock %}
-{% block loggdin %} visible {% endblock %}
+ 
 
 {% block path %}
     <li><a href="{% url 'index' %}">Home</a></li>
@@ -14,7 +14,7 @@
         <p>Name: {{user.name}} <br> Degree: {{user.degree}}<br>Posts:<br></p>
      </section>
 
-    <section class="post_section">
+    <section class="post_section" style="flex-direction: column">
         {% for post in all_upost %}
             {% if forloop.counter|divisibleby:"4" %}
                 <br>

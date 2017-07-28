@@ -2,7 +2,17 @@
 {% block title %} Login {% endblock %}
 {% block login %} class="active" {% endblock %}
 {% block body %}
-    <h1>This is the login page</h1>
+  <h1>Login to New Beginnings Marketplace</h1>
+
+    <form id="login_form" method="post">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
+
+        <input type="submit" value="submit" />
+    </form>
 
     <a href="/" class="retAnchor">Back To Home Page</a>
 {% endblock %}

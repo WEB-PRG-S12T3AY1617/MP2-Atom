@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.views.generic import View
+from django.contrib.auth import views as auth_views
 from .forms import RegisterForm
 
 def index(request):
@@ -46,6 +47,7 @@ def register(request):
     return render(request, 'homepage/reghpage.html', {})
 
 def login(request):
+
     return render(request, 'homepage/loghpage.html', {})
 
 def logout(request):

@@ -1,5 +1,12 @@
-
 {% extends 'homepage/skeleton.html' %}
+{% block path %}
+    {% if posts.number == 1 %}
+        <li class="active">Home</li>
+    {% else %}
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li class="active">Page {{posts.number}}</li>
+    {% endif %}
+{% endblock %}
 {% block body %}
 
 <section class="post_section">

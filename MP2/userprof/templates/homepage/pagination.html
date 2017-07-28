@@ -1,0 +1,23 @@
+<section class="page_number" style="margin-left: 45%;">
+    {% if page.has_other_pages %}
+        <ul class="pagination">
+            {% if page.has_previous %}
+                <li><a aria-label="prev" href="?page={{page.previous_page_number}}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for pages in page.paginator.page_range %}
+                {% if page.number == pages %}
+                    <li class="active"><span>{{pages}}<span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li><a href="?page={{pages}}">{{pages}}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page.has_next %}
+                <li><a aria-label="next" href="?page={{page.next_page_number}}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</section>

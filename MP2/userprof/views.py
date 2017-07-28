@@ -9,20 +9,34 @@ from django.views import generic
 from django.views.generic import View
 from django.contrib.auth import views as auth_views
 from .forms import RegisterForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
 
     all_post = Post.objects.all()
-    filterLimit = Q()
+    paginator = Paginator(all_post, 2)
 
-    if 'q' in request.GET:
-        tags = request.GET['q'].split()
-        for tag in tags:
-            filterLimit = filterLimit | Q(tags__contains=tag)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
 
-    all_post = all_post.filter(filterLimit)
 
-    return render(request, 'homepage/Mainhpage.html', {'all_p' : all_post})
+        #    filterLimit = Q()
+        #
+        #    if 'q' in request.GET:
+        #        tags = request.GET['q'].split()
+        #        for tag in tags:
+        #            filterLimit = filterLimit | Q(tags__contains=tag)
+        # 'all_p' : all_post,
+        #    all_post = all_post.filter(filterLimit)
+
+    return render(request, 'homepage/Mainhpage.html', {'posts': posts, 'page': page})
 
 def all_user(request):
     all_users = User.objects.all()

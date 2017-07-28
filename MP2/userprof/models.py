@@ -8,7 +8,7 @@ from taggit.managers import TaggableManager
 
 class profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    degreeoroffice = models.CharField(max_length=50, blank = True)
+    degree = models.CharField(max_length=50, blank = True)
 
 @receiver(post_save, sender = User)
 def update_user_profile(sender, instance, created, **kwargs):

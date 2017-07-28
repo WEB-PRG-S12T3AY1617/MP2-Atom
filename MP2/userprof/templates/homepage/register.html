@@ -4,7 +4,7 @@
     <h2 class="modal-title">Registration</h2>
 </div>
 <div class="modal-body">
-    <form method="post" role="form">
+    <form method="post" role="form" action="{% url 'register' %}">
         {% csrf_token %}
         {% for field in form %}
             {{ field.label_tag }}<br>
@@ -24,6 +24,7 @@
         </div>
     </form>
 </div>
+
   
   
 

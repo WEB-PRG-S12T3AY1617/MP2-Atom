@@ -1,7 +1,6 @@
 {% extends 'homepage/skeleton.html' %}
 {% block title %} User# {{user.id}} {% endblock %}
 {% block pageno %} hidden {% endblock %}
-{% block loggdin %} visible {% endblock %}
 
 {% block path %}
     <li><a href="{% url 'index' %}">Home</a></li>
@@ -11,7 +10,7 @@
 
 {% block body %}
     <section id="userinf">
-        <p>Name: {{user.name}} <br> Degree: {{user.degree}}<br>Posts:<br></p>
+        <p>Name: {{user.first_name}}  {{user.last_name}} <br> Degree: {{user.profile.degree}}<br>Posts:<br></p>
      </section>
 
     <section class="post_section">
@@ -21,7 +20,7 @@
                     <p>{{post.item_name}}</p>
 
                 </div>
-            
+
                 <div class="item">
                     <div class="thumbnail">
                         <img src="{{post.thumbnail}}">

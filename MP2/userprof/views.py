@@ -80,9 +80,9 @@ def Register(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username = username, password = raw_password)
-            login(request,user)
-            # messages.add_message(request, messages.SUCCESS, 'Profile created successfully.')
-            return redirect('home')
+            login(request)
+            messages.success(request, 'Your profile has been added.')
+            return redirect('index')
     else:
         form = RegisterForm()
     return render(request, 'homepage/register.html', {'form': form})

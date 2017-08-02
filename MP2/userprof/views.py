@@ -62,8 +62,11 @@ def register(request):
     return render(request, 'homepage/reghpage.html', {})
 
 def login(request):
+    if request.user:
+        current_user = request.user
+        # return redirect('index')
+    return render(request, 'homepage/Mainhpage.html', {'current_user': current_user})
 
-    return render(request, 'homepage/loghpage.html', {})
 
 def logout(request):
     return render(request, 'homepage/logoutpage.html', {})

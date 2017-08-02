@@ -1,4 +1,12 @@
 {% extends 'homepage/skeleton.html' %}
+{% if current_user.is_authenticated %}
+
+
+  {% block log %} hidden {% endblock %}
+  {% block reg %} hidden {% endblock %}
+  {% else %}
+
+{% endif %}
 {% block path %}
     {% if posts.number == 1 %}
         <li class="active">Home</li>
@@ -8,7 +16,7 @@
     {% endif %}
 {% endblock %}
 {% block body %}
-
+ <h1> Welcome {{current_user.get_username}} </h1>
 <section class="post_section" style="flex-direction: column">
     {% for post in posts %}
         {% if forloop.counter|divisibleby:"4" %}
@@ -24,10 +32,10 @@
                     <a href="#" data-toggle="modal" data-target="#picture{{post.id}}"><img src="{{post.thumbnail}}" style="width: 100%; height: 100%"></a>
                 </div>
                 <div class="item_info">
-                    <p><br>Vendor: <a href ="{% url 'user' post.op.id %}">{{post.op.username}}</a> <br>Quantity: {{post.quantity}}</p>
+                    <p><br>Vendor: <a href ="{% url 'user' post.op.id %}">{{post.op.username}}</a> <br>Quantity: {{post.quantity}}<br>Post Type: {{post.post_type}} <br>Condition: {{post.post_condition}}</p>
                 </div>
             </div>
-            
+
             <div class="modal fade" id="picture{{post.id}}">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -36,16 +44,17 @@
                         </div>
                         <div class="modal-body">
                             <img src="{{post.thumbnail}}" class="img-responsive" style="width: 100%; height: 100%">
-                        </div>    
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
     {% endfor %}
 </section>
 
-{% include 'homepage/pagination.html' with page=posts %}
+
 
 
 {% endblock %}
+{% include 'homepage/pagination.html' with page=posts %}

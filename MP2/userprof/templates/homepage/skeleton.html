@@ -28,7 +28,7 @@
     <!--            actual navigation-->
                 <div class="collapse navbar-collapse" id="mainNavBar">
                     <ul class="nav navbar-nav">
-                        <li {%block login%} {% endblock %} class="dropdown">
+                        <li style="visibility:{%block log%} visible{% endblock %};" class="dropdown">
                             <a href="{% url 'login' %}" class="dropdown-toggle" data-toggle="dropdown">Login</a>
                             <ul class="dropdown-menu" id="userlog">
                                 <li>
@@ -47,7 +47,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li {%block reg%} {% endblock %}>
+                        <li style="visibility:{%block reg%} visible{% endblock %};" >
                             <a href="{% url 'register' %}" data-toggle="modal" data-target="#regform">Sign-up</a>
                         </li>
                     </ul>

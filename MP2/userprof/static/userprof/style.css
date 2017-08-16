@@ -5,61 +5,73 @@ body {
     background-position: center;
     background-size: cover;
 }
-a, p {
+a, p, h3{
     letter-spacing: 2px;
 }
 
+/*updated*/
 .post_section {
     display: flex;
-/*    flex-direction: row;*/
-    align-items: center;
+    flex-wrap:wrap;
+	width: 100%;
     padding: 5px;
-    height: 90%;
+    height: auto;
 }
+/*updated*/
+.user_post, .item_offer {
+    width: 30%;
+    margin: 0 auto; 
+    margin-top: 3%; 
+    margin-bottom: 3%;
+    height: inherit;
 
-.user_post {
-    width: 50%;
-    flex-direction: row;
-    margin: 4%;
-    height: inherit
 }
-
-.item_name {
+/*updated*/
+.user_post:nth-child(3n + 1) {
+    float: left;
+}
+/*updated*/
+.user_post:nth-child(3n + 0) {
+    float: right;
+}
+/*updated*/
+.userdet {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 0;
+    padding: 5px;
+    background-color:#aec5f9;
+}
+/*updated*/
+.userHead {
+    margin: 3%;
+}
+/*updated*/
+.item_name, .userHead, .offer_head{
     background-color: #162070;
 }
-.item_name p {
+/*updated*/
+.item_name p , .userHead h3, .offer_head p{
     display: block;
     color: snow;
-    
-    
     padding: 5px;
     text-align: center;
 }
 
 .item {
-    background-color:#162070;
-    height: inherit;
+    background-color:#aec5f9;
 }
 
 .thumbnail {
     width: 100%;
     height: 70%;
 }
-
-.item_info {
-    color: snow;
+/*updated*/
+.item_info,  .item_info a{
+    color: black;
     padding: 5px;
 }
 
-.item_info a {
-    color: snow;
-}
-
-/*
-a {
-    text-decoration: none;
-    color: black;
-*/
 }
 img {
     max-height: 100%;
@@ -68,7 +80,15 @@ img {
 #userlog .form-group {
     margin: 5px;
 }
-.breadcrumb {
-    background-color: black;
-    opacity: 0.8;
+a.abut {
+    color: snow;
+    margin: 7%;
+    padding: 2%;
+    border-radius: 10px; 
+    text-decoration: none;
+    border: 3px solid #162070;
 }
+.abut:hover {
+    background-color: #162070;
+}
+.modal.custom .modal-dialog .modal-body

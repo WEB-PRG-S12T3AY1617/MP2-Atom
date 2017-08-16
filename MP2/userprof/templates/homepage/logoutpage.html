@@ -1,6 +1,11 @@
 {% extends 'homepage/skeleton.html' %}
 {% block title %} Logout {% endblock %}
+
 {% block body %}
+     <div class="alert alert-success alert-dismissable fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Logout Successful!</strong> <a href="/" class="retAnchor">Back To Home Page</a>.
+  </div>
     <h1>You have successfully logged out</h1>
     <a href="/" class="retAnchor">Back To Home Page</a>
 {% endblock %}

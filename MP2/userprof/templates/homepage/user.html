@@ -2,23 +2,26 @@
 {% block title %} User# {{user.id}} {% endblock %}
 {% block pageno %} hidden {% endblock %}
 
-
-{% block path %}
-    <li><a href="{% url 'index' %}">Home</a></li>
-    <li><a href="{% url 'all_user' %}">Users</a></li>
-    <li class="active"> {{user.id}} </li>
-{% endblock %}
-
 {% block body %}
-    <section id="userinf">
-        <p>Name: {{user.first_name}}  {{user.last_name}} <br> Degree: {{user.profile.degree}}<br>Posts:<br></p>
+    <section class="userinf">
+<!--        updated-->
+        <div class="userHead">
+            <h3>User Profile</h3>
+        </div>
+        <div class="userdet">
+            <p><strong>Name:</strong> {{user.first_name}} {{user.last_name}}</p>
+            <p><strong>Degree:</strong> {{user.profile.degree}}</p>
+        </div>
+        <div class="userHead">
+            <h3>User Posts</h3>
+        </div>
+<!--        updated-->
      </section>
 
-    <section class="post_section" style="flex-direction: column">
-        {% for post in all_upost %}
-            {% if forloop.counter|divisibleby:"4" %}
-                <br>
-            {% endif %}
+    <section class="post_section">
+<!--                        updated-->
+        {% for post in posts %}
+<!--                        updated-->
             <div class="user_post">
                 <div class="item_name">
                     <p>{{post.item_name}}</p>
@@ -26,28 +29,24 @@
 
                 <div class="item">
                     <div class="thumbnail">
-                        <a href="#" data-toggle="modal" data-target="#picture{{post.id}}"><img src="{{post.thumbnail}}" style="width: 100%; height: 100%"></a>
+<!--                        updated-->
+                        <a href="{% url 'postdet' post.id %}"><img src="{{post.thumbnail.url}}" style="width: 100%; height: 100%"></a>
                     </div>
                     <div class="item_info">
-                        <p><br>Quantity: {{post.quantity}}</p>
+
+                        <p><strong>Quantity:</strong> {{post.quantity}}</p>
+                        <p><strong>Tags:</strong>
+                            {% for tag in post.tags.all %}
+                            <a href="{% url 'searchTg' tag.slug %}">{{tag.name}}</a>
+                            {% endfor %}
+                        </p>
+<!--                        updated-->
                     </div>
                 </div>
-
-                <div class="modal fade" id="picture{{post.id}}">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="{{post.thumbnail}}" class="img-responsive" style="width: 100%; height: 100%">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         {% endfor %}
     </section>
-<!--{% include 'homepage/pagination.html' with page=all_upost %}-->
+<!--                        updated-->
+{% include 'homepage/pagination.html' with page=posts %}
+<!--                        updated-->
 {% endblock %}

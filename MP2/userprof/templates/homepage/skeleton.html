@@ -28,17 +28,23 @@
     <!--            actual navigation-->
                 <div class="collapse navbar-collapse" id="mainNavBar">
                     <ul class="nav navbar-nav">
-                        <li style="visibility:{%block log%} visible{% endblock %};" class="dropdown">
+<!--                        updated-->
+                        {% if log_user.is_authenticated  %}
+                        <li style="visibility: hidden" class="dropdown">
+                        {% else %}
+                        <li style="visibility: visible" class="dropdown">
+                        {% endif %}
+<!--                                updated-->
                             <a href="{% url 'login' %}" class="dropdown-toggle" data-toggle="dropdown">Login</a>
                             <ul class="dropdown-menu" id="userlog">
                                 <li>
-                                    <form class="navbar-form navbar-left" role="search" method="get" action="#">
-
+                                    <form class="navbar-form navbar-left" role="form" method="post" action="{% url 'login' %}">
+                                        {% csrf_token %}
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="u" value="" placeholder="Username">
+                                            <input type="text" class="form-control" name="username" value="" placeholder="Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="p" value="" placeholder="Password">
+                                            <input type="password" class="form-control" name="password" value="" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-default btn-block">Login</button>
@@ -47,12 +53,26 @@
                                 </li>
                             </ul>
                         </li>
-                        <li style="visibility:{%block reg%} visible{% endblock %};" >
+<!--                        updated-->
+                        {% if log_user.is_authenticated  %}
+                            <li style="visibility: hidden">
+                        {% else %}
+                            <li style="visibility: visible ">
+                        {% endif %}
                             <a href="{% url 'register' %}" data-toggle="modal" data-target="#regform">Sign-up</a>
                         </li>
+<!--                        updated-->
                     </ul>
 
                     <div class="modal fade" id="regform">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="postform">
                         <div class="modal-dialog">
                             <div class="modal-content">
 
@@ -64,24 +84,59 @@
                         <li class="dropdown" style="visibility:{% block pageno %} visible {% endblock %}">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Items per Page <span class="caret"></span></a>
                             <ul class="dropdown-menu" style="text-align: center;">
-                                <li>10</li>
-                                <li>15</li>
-                                <li>20</li>
+<!--                                updated-->
+                                {% if not query %}
+                                <li><a href="{% url 'index' %}">10</a></li>
+                                <li><a href="{% url 'indexPage' 15 %}" >15</a></li>
+                                <li><a href="{% url 'indexPage' 20 %}">20</a></li>
+                                {% else %}
+                                <li><a href="{% url 'qPage' query 10 %}">10</a></li>
+                                <li><a href="{% url 'qPage' query 15 %}" >15</a></li>
+                                <li><a href="{% url 'qPage' query 20 %}">20</a></li>
+                                {% endif %}
+<!--                                updated-->
                             </ul>
                         </li>
                         <li>
-                            <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                            <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'search' %}">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="q" value="">
+                                    <input type="text" class="form-control" name="q" placeholder="Search" value="{{request.GET.q}}">
                                 </div>
                                 <button type="submit" class="btn btn-default">Search</button>
                             </form>
                         </li>
-                        <li class="dropdown" style="visibility:{% block loggdin %} hidden {% endblock %}">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <span class="caret"></span></a>
+                        {% if log_user.is_authenticated  %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-bell"></span><span class="badge">{{offers.count}}</span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Create a Post</a></li>
-                                <li><a href="#">My posts</a></li>
+                              {% if offers %} <!-- ETO YUNG BINAGO (CAPS PARA KITA) -->
+                                {% for offer in offers %}
+                                <li><a href=" {% url 'postdet' offer.post.id %}">{{offer.user}} made an offer on your {{offer.post}}</a></li>
+                                {% endfor %}
+                              {% endif %}
+                            </ul>
+
+
+
+                        </li>
+                        {% endif %}
+<!--                        updated-->
+                        {% if log_user.is_authenticated  %}
+                            <li class="dropdown" style="visibility: visible">
+                        {% else %}
+                            <li class="dropdown" style="visibility: hidden ">
+                        {% endif %}
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{log_user.first_name}} <span class="caret"></span></a>
+<!--                                updated-->
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'createpost' %}" data-toggle="modal" data-target="#postform">Create a Post</a></li>
+<!--                                updated-->
+                                {% if log_user.is_authenticated  %}
+                                <li><a href="{% url 'user' log_user.id %}">My Profile</a></li>
+                                {% else %}
+                                <li><a href="#">My Profile</a></li>
+<!--                                updated-->
+                                {% endif %}
                                 <li><a href="{% url 'logout' %}">Logout</a></li>
                             </ul>
                         </li>
@@ -92,22 +147,6 @@
         </nav>
     </section>
 
-    <section class="path_section">
-        <ul class="breadcrumb breadcrumb-arrow">
-            {% block path%}<li class="active">Home</li>{% endblock %}
-
-        </ul>
-        <span>
-
-        </span>
-    </section>
-    {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
 
     {% block body %}
     {% endblock %}

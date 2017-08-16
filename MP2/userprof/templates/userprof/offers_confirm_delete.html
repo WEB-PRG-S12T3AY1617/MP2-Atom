@@ -1,0 +1,19 @@
+{% extends 'homepage/skeleton.html' %}
+
+{% block body%}
+    <div class="centerdiv">
+        <div class="innerdiv">
+        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <h1>Do you wish to proceed with the request?</h1>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-success">Yes</button>
+                    <button type="submit" class="btn btn-danger">No</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+{% endblock %}
